@@ -50,6 +50,8 @@ server:
 
 eureka:
   client:
+    register-with-eureka: true
+    fetch-registry: true
     enabled: true
     service-url:
       default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
