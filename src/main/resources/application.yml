@@ -4,8 +4,6 @@ app:
     expiration-in-minute: 5
     secret: RandomSecretKey123456789!RandomSecretKey123456789!RandomSecretKey123456789!
 spring:
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
   application:
     name: security
   main:
@@ -16,6 +14,7 @@ spring:
     username: root
     password: nocountry#2023
   jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
     hibernate:
       ddl-auto: update
