@@ -1,7 +1,7 @@
 ---
 app:
   jwt:
-    expiration-in-minute: 5
+    expiration-in-minute: 30
     secret: RandomSecretKey123456789!RandomSecretKey123456789!RandomSecretKey123456789!
 spring:
   application:
