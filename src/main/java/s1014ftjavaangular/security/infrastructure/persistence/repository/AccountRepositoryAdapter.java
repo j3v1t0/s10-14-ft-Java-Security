@@ -2,10 +2,15 @@ package s1014ftjavaangular.security.infrastructure.persistence.repository;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import s1014ftjavaangular.security.domain.enums.Rol;
 import s1014ftjavaangular.security.domain.exceptions.AccountAlreadyExists;
@@ -24,6 +29,8 @@ import java.util.function.Function;
 public class AccountRepositoryAdapter implements AccountRepositoryPort {
 
     private final AccountJpaRepository jpaRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -62,5 +69,12 @@ public class AccountRepositoryAdapter implements AccountRepositoryPort {
         var account = jpaRepository.save(new AccountEntity(email, encryptPassword, rol));
 
         return entityToModel.apply(account);
+    }
+
+    @Transactional(readOnly = true)
+    @Scheduled(fixedDelay = 180000) // Cada 3 minutos
+    public void performDatabaseMaintenance() {
+        Query query = entityManager.createNativeQuery("SELECT 1");
+        query.getResultList();
     }
 }

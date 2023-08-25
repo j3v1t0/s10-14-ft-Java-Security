@@ -18,7 +18,7 @@ import s1014ftjavaangular.security.domain.usecase.RegisterAccountUseCase;
 @RequiredArgsConstructor
 public class RegisterAccountController {
     private final RegisterAccountUseCase registerAccountUseCase;
-    @CircuitBreaker(name = "mysqlCR", fallbackMethod = "fallBackRegisterAccount")
+    //@CircuitBreaker(name = "mysqlCR", fallbackMethod = "fallBackRegisterAccount")
     @PostMapping
     public ResponseEntity<?> registerAccount(@RequestBody @Valid RegisterCustomer registerCustomer){
 
@@ -26,9 +26,9 @@ public class RegisterAccountController {
         
         return ResponseEntity.ok().build();
     }
-    public ResponseEntity<?> fallBackRegisterAccount(@RequestBody @Valid RegisterCustomer registerCustomer, RuntimeException exception){
-        var response = ResponseEntity.ok("At the moment there is a problem in the login");
+/*    public ResponseEntity<?> fallBackRegisterAccount(@RequestBody @Valid RegisterCustomer registerCustomer, RuntimeException exception){
+        var response = ResponseEntity.ok("At the moment there is a problem in the register");
         log.error("Exception = {}", exception.getMessage());
         return response;
-    }
+    }*/
 }
