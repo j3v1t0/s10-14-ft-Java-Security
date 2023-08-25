@@ -1,6 +1,7 @@
 package s1014ftjavaangular.security.infrastructure.controller;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ import s1014ftjavaangular.security.domain.usecase.LoginUseCase;
 public class LoginController {
     private final LoginUseCase loginUseCase;
     //@CircuitBreaker(name = "mysqlCR", fallbackMethod = "fallBackLogin")
+    @Retry(name = "securityRetry")
     @PostMapping()
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginDTO loginDto){
         var response = loginUseCase.login(loginDto.getEmail(), loginDto.getPassword());
