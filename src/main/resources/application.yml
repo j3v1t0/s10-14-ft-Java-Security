@@ -69,7 +69,7 @@ resilience4j.circuitbreaker:
       slidingWindowSize: 5
       slow-call-rate-threshold: 30
       slow-call-duration-threshold: 100s
-      waitDurationInOpenState: 30s
+      waitDurationInOpenState: 100s
       failureRateThreshold: 50
       ignoreExceptions:
         - java.lang.IllegalArgumentException
