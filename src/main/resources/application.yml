@@ -10,11 +10,15 @@ spring:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
   datasource:
-    url: jdbc:postgresql://20.121.214.190:5434/account-db
-    username: postgres
-    password: Aforo2552023
+    #url: jdbc:postgresql://20.121.214.190:5434/account-db
+    #username: postgres
+    #password: Aforo2552023
+    url: jdbc:mysql://20.121.214.190:3307/account-db
+    username: root
+    password: nocountry#2023
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    #database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
     hibernate:
       ddl-auto: update
