@@ -61,15 +61,6 @@ eureka:
     service-url:
       default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
 
-resilience4j.retry:
-  configs:
-    default:
-      max-attempts: 5
-      wait-duration: 2000ms
-      retry-exceptions:
-        - java.io.IOException
-        - java.lang.RuntimeException
-
 resilience4j.circuitbreaker:
   instances:
     mysqlCR:
