@@ -1,5 +1,6 @@
 package s1014ftjavaangular.security.infrastructure.controller;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,12 +18,17 @@ import s1014ftjavaangular.security.domain.usecase.RegisterAccountUseCase;
 @RequiredArgsConstructor
 public class RegisterAccountController {
     private final RegisterAccountUseCase registerAccountUseCase;
-
+    @CircuitBreaker(name = "mysqlCR", fallbackMethod = "fallBackRegisterAccount")
     @PostMapping
     public ResponseEntity<?> registerAccount(@RequestBody @Valid RegisterCustomer registerCustomer){
 
         var savedAccount = registerAccountUseCase.createCustomer(registerCustomer);
         
         return ResponseEntity.ok().build();
+    }
+    public ResponseEntity<?> fallBackRegisterAccount(@RequestBody @Valid RegisterCustomer registerCustomer, RuntimeException exception){
+        var response = ResponseEntity.ok("At the moment there is a problem in the login");
+        log.error("Exception = {}", exception.getMessage());
+        return response;
     }
 }

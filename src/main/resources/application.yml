@@ -68,7 +68,7 @@ resilience4j.circuitbreaker:
       slidingWindowType: COUNT_BASED
       slidingWindowSize: 5
       slow-call-rate-threshold: 30
-      slow-call-duration-threshold: 25s
+      slow-call-duration-threshold: 100s
       waitDurationInOpenState: 30s
       failureRateThreshold: 50
       ignoreExceptions:
