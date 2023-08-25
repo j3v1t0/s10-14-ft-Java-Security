@@ -1,5 +1,6 @@
 package s1014ftjavaangular.security.infrastructure.controller;
 
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import s1014ftjavaangular.security.infrastructure.security.AccountPrincipal;
 public class GetCurrentSessionController {
     private final GetCurrentSessionUse currentSessionUseCase;
 
+    @Retry(name = "securityRetry")
     @GetMapping()
     public ResponseEntity<?> getCurrentSession(@AuthenticationPrincipal AccountPrincipal accountPrincipal){
 
