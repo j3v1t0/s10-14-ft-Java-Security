@@ -62,8 +62,8 @@ eureka:
       default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
 
 resilience4j.retry:
-  instances:
-    securityRetry:
+  configs:
+    default:
       max-attempts: 5
       wait-duration: 2000ms
       retry-exceptions:

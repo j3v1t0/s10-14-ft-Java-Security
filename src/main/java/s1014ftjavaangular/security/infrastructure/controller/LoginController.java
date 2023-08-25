@@ -20,7 +20,7 @@ import s1014ftjavaangular.security.domain.usecase.LoginUseCase;
 public class LoginController {
     private final LoginUseCase loginUseCase;
     @CircuitBreaker(name = "mysqlCR", fallbackMethod = "fallBackLogin")
-    @Retry(name = "securityRetry")
+    @Retry(name = "default")
     @PostMapping()
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginDTO loginDto){
         var response = loginUseCase.login(loginDto.getEmail(), loginDto.getPassword());
