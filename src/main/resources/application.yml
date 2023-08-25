@@ -61,20 +61,29 @@ eureka:
     service-url:
       default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
 
-resilience4j.circuitbreaker:
+resilience4j.retry:
   instances:
-    mysqlCR:
-      registerHealthIndicator: true
-      slidingWindowType: COUNT_BASED
-      slidingWindowSize: 5
-      slow-call-rate-threshold: 30
-      slow-call-duration-threshold: 100s
-      waitDurationInOpenState: 100s
-      failureRateThreshold: 50
-      ignoreExceptions:
-        - java.lang.IllegalArgumentException
-        - s1014ftjavaangular.security.domain.exceptions.AccountAlreadyExists
-        - jakarta.validation.ConstraintViolationException
+    securityRetry:
+      max-attempts: 5
+      wait-duration: 2000ms
+      retry-exceptions:
+        - java.io.IOException
+        - java.lang.RuntimeException
+
+#resilience4j.circuitbreaker:
+  #instances:
+    #mysqlCR:
+      #registerHealthIndicator: true
+      #slidingWindowType: COUNT_BASED
+      #slidingWindowSize: 5
+      #slow-call-rate-threshold: 30
+      #slow-call-duration-threshold: 100s
+      #waitDurationInOpenState: 30s
+      #failureRateThreshold: 50
+      #ignoreExceptions:
+        #- java.lang.IllegalArgumentException
+        #- s1014ftjavaangular.security.domain.exceptions.AccountAlreadyExists
+        #- jakarta.validation.ConstraintViolationException
 management:
   tracing:
     sampling:

@@ -19,8 +19,8 @@ import s1014ftjavaangular.security.domain.usecase.LoginUseCase;
 @RequiredArgsConstructor
 public class LoginController {
     private final LoginUseCase loginUseCase;
-    @CircuitBreaker(name = "mysqlCR", fallbackMethod = "fallBackLogin")
-    @Retry(name = "myRetryConfig")
+    //@CircuitBreaker(name = "mysqlCR", fallbackMethod = "fallBackLogin")
+    @Retry(name = "securityRetry")
     @PostMapping()
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginDTO loginDto){
         var response = loginUseCase.login(loginDto.getEmail(), loginDto.getPassword());
@@ -28,9 +28,9 @@ public class LoginController {
         return ResponseEntity.ok(response);
     }
 
-    public ResponseEntity<?> fallBackLogin(@RequestBody @Valid LoginDTO loginDto, RuntimeException exception){
+/*    public ResponseEntity<?> fallBackLogin(@RequestBody @Valid LoginDTO loginDto, RuntimeException exception){
         var response = ResponseEntity.ok("At the moment there is a problem in the login");
         log.error("Exception = {}", exception.getMessage());
         return response;
-    }
+    }*/
 }
