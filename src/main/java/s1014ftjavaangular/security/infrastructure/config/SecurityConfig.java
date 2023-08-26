@@ -58,9 +58,8 @@ public class SecurityConfig {
         //http.authenticationManager(authenticationManager);
 
         http.authorizeHttpRequests()
-                .requestMatchers(
-                        "/v3/**",
-                        "/swagger-ui/**")
+                .requestMatchers(HttpMethod.GET,
+                        "/**")
                 .permitAll()
                 .requestMatchers(HttpMethod.GET,
                         "/api/accounts/current-session"
