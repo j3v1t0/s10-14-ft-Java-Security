@@ -3,6 +3,9 @@ app:
   jwt:
     expiration-in-minute: 30
     secret: RandomSecretKey123456789!RandomSecretKey123456789!RandomSecretKey123456789!
+springdoc:
+  swagger-ui:
+    path: /security.html
 spring:
   application:
     name: security
@@ -14,6 +17,7 @@ spring:
     username: root
     password: nocountry#2023
   jpa:
+
     database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
     hibernate:

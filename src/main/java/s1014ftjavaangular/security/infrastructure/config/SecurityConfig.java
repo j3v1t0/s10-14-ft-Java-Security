@@ -58,6 +58,10 @@ public class SecurityConfig {
         //http.authenticationManager(authenticationManager);
 
         http.authorizeHttpRequests()
+                .requestMatchers(
+                        "/v3/**",
+                        "/swagger-ui/**")
+                .permitAll()
                 .requestMatchers(HttpMethod.GET,
                         "/api/accounts/current-session"
                 ).hasAnyRole(Rol.ADMIN.name(), Rol.CUSTOMER.name(), Rol.EMPLOYEE.name())
