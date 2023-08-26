@@ -59,7 +59,8 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET,
-                        "/**")
+                        "/v3/**",
+                        "/swagger-ui/**")
                 .permitAll()
                 .requestMatchers(HttpMethod.GET,
                         "/api/accounts/current-session"
