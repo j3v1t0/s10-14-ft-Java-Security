@@ -5,11 +5,13 @@ app:
     secret: RandomSecretKey123456789!RandomSecretKey123456789!RandomSecretKey123456789!
 springdoc:
   swagger-ui:
-    path: /docs/security/security.html
+    path: /swagger-ui/security/index.html
+
 springfox:
   documentation:
     swagger-ui:
       path: /docs/security
+
 spring:
   application:
     name: security
