@@ -24,11 +24,11 @@ public class SecurityApplication {
         SpringApplication.run(SecurityApplication.class, args);
     }
 
-    @Bean
+/*    @Bean
     public EurekaClientConfigBean eurekaInstanceConfig(InetUtils inetUtils) {
         var config = new EurekaClientConfigBean();
         config.setServiceUrl(Map.of("defaultZone", "https://s10-14-ft-eurekaserver.azurewebsites.net/eureka"));
 
         return config;
-    }
+    }*/
 }
