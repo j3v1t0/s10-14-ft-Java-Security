@@ -10,7 +10,7 @@ springdoc:
 springfox:
   documentation:
     swagger-ui:
-      path: /docs/security
+      path: /swagger-ui/security
 
 spring:
   application:
